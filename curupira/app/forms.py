@@ -16,3 +16,19 @@ class BootstrapAuthenticationForm(AuthenticationForm):
                                widget=forms.PasswordInput({
                                    'class': 'form-control',
                                    'placeholder':'Password'}))
+
+
+class AddMonitredCityForm(forms.Form):
+    pName = forms.CharField(label="Name",
+                            max_length=254,
+                            widget=forms.TextInput({
+                                'class': 'form-control'
+                            }))
+    pLat = forms.FloatField(label="Latitude",
+                            widget = forms.NumberInput({
+                                'class': 'form-control',
+                            }))
+    pLng = forms.FloatField(label="Longitude",
+                            widget = forms.NumberInput({
+                                'class': 'form-control',
+                            }))
