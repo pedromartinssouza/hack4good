@@ -57,12 +57,12 @@ def monitoring(request):
             'year':datetime.now().year,
         }
     )
-def getWeather(request, lat, longit):
+def getWeather(request, lat, longit, tempUnit):
     if request.method == 'GET':
 
-        return JsonResponse(utils.getWeatherData(lat, longit), safe = False)
+        return JsonResponse(utils.getWeatherData(lat, longit, tempUnit), safe = False)
 
-def monitorLocation(request, lat, longit):
+def monitorLocation(request, lat, longit, tempUnit):
     if request.method == 'POST':
-        return JsonResponse(writeDB.assignMonitoring(lat, longit), safe = False)
+        return JsonResponse(writeDB.assignMonitoring(lat, longit, tempUnit), safe = False)
 

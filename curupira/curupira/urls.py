@@ -31,6 +31,7 @@ urlpatterns = [
          name='login'),
     path('logout/', LogoutView.as_view(next_page='/'), name='logout'),
     path('admin/', admin.site.urls),
-    path('getWeather/<negint:lat>/<negint:longit>', views.getWeather),
-    path('monitorLocation/<negint:lat>/<negint:longit>', views.monitorLocation)
+    
+    path('getWeather/<negint:lat>/<negint:longit>/<str:tempUnit>', views.getWeather),
+    path('monitorLocation/<negint:lat>/<negint:longit>/<str:tempUnit>', views.monitorLocation)
 ]
