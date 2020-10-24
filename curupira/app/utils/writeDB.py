@@ -4,25 +4,29 @@ from datetime import datetime, timedelta, timezone
 
 def assignMonitoring(pLat, pLongit, pName):
 
-    localizationQuerySet = Localization.objects.filter(lat = pLat, longit = pLongit)
+    parsedLat = pLat * 1000
+    parsedLongit = pLongit * 1000
+
+
+    localizationQuerySet = Localization.objects.filter(lat = parsedLat, longit = parsedLongit)
 
     if(localizationQuerySet.exists()):
         localizationQuerySet.update(monitoring = True, name = pName)
     else:
-        createdLocalizationQuerySet = Localization(lat = pLat,
-                                                   longit = pLongit,
+        createdLocalizationQuerySet = Localization(lat = parsedLat,
+                                                   longit = parsedLongit,
                                                    name = pName,
                                                    monitoring = True)
         createdLocalizationQuerySet.save()
 
     for days in range(5):
-        historicalData = utils.getHistoricalData(pLat, pLongit, days)
+        historicalData = utils.getCurrentCompleteWeatherData(parsedLat, parsedLongit)
         date = datetime.now() - timedelta(days=days)
-        weatherDataQuerySet = WeatherData(humidity=historicalData.humidity, 
-                                          temperature=historicalData.temperature()['temp'], 
+        weatherDataQuerySet = WeatherData(humidity=historicalData['humidity'], 
+                                          temperature=historicalData['temperature']['temp'], 
                                           temperatureMetric="Celsius", 
-                                          atmosphericPressure=historicalData.pressure['press'],
-                                          wind=historicalData.wind()['speed'], 
+                                          atmosphericPressure=historicalData['pressure']['press'],
+                                          wind=historicalData['wind']['speed'], 
                                           localization_id=localizationQuerySet.values('id'),
                                           timeStamp = date
         )
