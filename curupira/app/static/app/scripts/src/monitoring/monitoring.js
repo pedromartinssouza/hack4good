@@ -20,35 +20,6 @@ let monitoringMap;
 let canvas;
 let meteorites;
 
-// var pins = [
-//     {
-//         lat: -29.9189,
-//         lng: -51.1781,
-//         color: 'positive',
-//         name: 'Canoas'
-//     },
-//     {
-//         lat: -30.0884,
-//         lng: -51.0238,
-//         color: 'careful',
-//         name: 'Viamão'
-//     },
-//     {
-//         lat: -30.0277,
-//         lng: -51.2287,
-//         color: 'alert',
-//         name: 'Porto Alegre'
-//     },
-//     {
-//         lat: -29.7848,
-//         lng: -55.7757,
-//         color: 'positive',
-//         name: 'Alegrete'
-//     }
-// ]
-
-//var pins = ;
-
 let icons;
 
 function setup() {
@@ -71,7 +42,7 @@ function setup() {
     var coordinates = centerCoordinate();
     options.lat = coordinates.lat;
     options.lng = coordinates.lng;
-
+    console.log({pins})
     monitoringMap = mappa.tileMap(options);
 
     monitoringMap.overlay(canvas);
@@ -83,7 +54,7 @@ function setup() {
 
 function centerCoordinate() {
     var lat = pins.reduce((acc, curr) => Number(acc) + Number(curr.lat), 0);
-    var lng = pins.reduce((acc, curr) => Number(acc) + Number(curr.lng), 0);
+    var lng = pins.reduce((acc, curr) => Number(acc) + Number(curr.longit), 0);
 
     return { lat: lat / pins.length, lng: lng / pins.length };
 }
@@ -96,10 +67,10 @@ function drawMeteorites() {
     for (var i = 0; i < pins.length; i++) {
 
         const latitude = Number(pins[i].lat);
-        const longitude = Number(pins[i].lng);
+        const longitude = Number(pins[i].longit);
         if (monitoringMap.map.getBounds().contains([latitude, longitude])) {
             const pos = monitoringMap.latLngToPixel(latitude, longitude);
-            image(icons[pins[i].color], pos.x - PIN_SIZE/2, pos.y - PIN_SIZE/2, PIN_SIZE, PIN_SIZE);
+            image(icons[pins[i].flag], pos.x - PIN_SIZE/2, pos.y - PIN_SIZE/2, PIN_SIZE, PIN_SIZE);
         }
     }
 
@@ -111,7 +82,7 @@ function mousePressed() {
 
 function handlePinOnRangeWhenMousePressed(){
     var pinOnRange = pins.find((pin) => {
-        const pinPos = monitoringMap.latLngToPixel(pin.lat, pin.lng);
+        const pinPos = monitoringMap.latLngToPixel(pin.lat, pin.longit);
         return (dist(mouseX, mouseY, pinPos.x, pinPos.y) < CLICK_THRESHOLD_DISTANCE);
     })
     populatePane(pinOnRange);
@@ -124,7 +95,7 @@ function populatePane(pin) {
     var lng = document.getElementById("loc-details-lng");
     title.innerHTML = pin.name;
     lat.innerHTML = pin.lat;
-    lng.innerHTML = pin.lng;
+    lng.innerHTML = pin.longit;
 }
 
 function toggleRightPane(show) {
