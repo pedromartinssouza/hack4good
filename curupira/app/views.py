@@ -43,3 +43,15 @@ def about(request):
             'year':datetime.now().year,
         }
     )
+
+def monitoring(request):
+    """Renders the monitoring page."""
+    assert isinstance(request, HttpRequest)
+    return render(
+        request,
+        'app/monitoring.html',
+        {
+            'title':'Monitoring',
+            'year':datetime.now().year,
+        }
+    )
