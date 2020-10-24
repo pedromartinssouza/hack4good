@@ -9,7 +9,7 @@ const key = 'pk.eyJ1IjoiZnJpY2FyZGkiLCJhIjoiY2tnbXVtdTdiMnNkaDJxbDd4MWducDl4aSJ9
 const options = {
     lat: 0,
     lng: 0,
-    zoom: 7,
+    zoom: 8,
     studio: true,
     style: 'mapbox://styles/mapbox/traffic-night-v2',
 };
@@ -57,8 +57,8 @@ function setup() {
 
 
     var positive = loadImage('./../static/app/assets/icons/positive.png');
-    var careful = loadImage('./../static/app/assets/icons/Alert.png');
-    var alert = loadImage('./../static/app/assets/icons/Careful.png');
+    var careful = loadImage('./../static/app/assets/icons/alert.png');
+    var alert = loadImage('./../static/app/assets/icons/careful.png');
     
     icons = {
         positive,
@@ -104,11 +104,23 @@ function drawMeteorites() {
 }
 
 function mousePressed() {
-    pins.filter((pin) => {
-        var pinPos = monitoringMap.latLngToPixel(pin.lat, pin.lng);
-        if (dist(mouseX, mouseY, pinPos.x, pinPos.y) < CLICK_THRESHOLD_DISTANCE) {
-            console.log(pin.name);
-        }
-    })
-
+    handlePinOnRangeWhenMousePressed();
 }
+
+function handlePinOnRangeWhenMousePressed(){
+    var pinOnRange = pins.find((pin) => {
+        const pinPos = monitoringMap.latLngToPixel(pin.lat, pin.lng);
+        return (dist(mouseX, mouseY, pinPos.x, pinPos.y) < CLICK_THRESHOLD_DISTANCE);
+    })
+    toggleRightPane(true);
+}
+
+function toggleRightPane(show) {
+    var rightPane = document.getElementById("localization-details");
+    var isHidden = rightPane.classList.contains("hidden");
+    if(show && isHidden) {
+        rightPane.classList.remove("hidden");
+    } else if (!show && !isHidden) {
+        rightPane.classList.add("hidden");
+    }
+} 
