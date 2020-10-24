@@ -5,5 +5,5 @@ def getWeatherData(lat, longit):
     mgr = owm.weather_manager()
     observation = mgr.weather_at_coords(lat, longit) 
     weather = observation.weather
-    
-    return (weather.temperature, weather.humidity, weather.wind)
+
+    return (weather.temperature(), weather.humidity, weather.wind())

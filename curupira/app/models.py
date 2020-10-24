@@ -7,8 +7,8 @@ from django.db import models
 # Create your models here.
 
 class Localization(models.Model):
-    lat = models.FloatField()
-    longit = models.FloatField()
+    lat = models.IntegerField()
+    longit = models.IntegerField()
     name = models.CharField(max_length = 100)
     monitoring = models.BooleanField()
 

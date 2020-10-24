@@ -6,6 +6,7 @@ from datetime import datetime
 from django.shortcuts import render
 from django.http import HttpRequest, JsonResponse
 from .utils import utils
+from .utils import writeDB
 
 def home(request):
     """Renders the home page."""
@@ -47,4 +48,8 @@ def about(request):
 
 def getWeather(request, lat, longit):
     if request.method == 'GET':
-        return utils.getWeatherData(lat, longit)
+        return JsonResponse(utils.getWeatherData(lat, longit), safe = False)
+
+def monitorLocation(request, lat, longit):
+    if request.method == 'POST':
+        return JsonResponse(writeDB.assignMonitoring(lat, longit), safe = False)
