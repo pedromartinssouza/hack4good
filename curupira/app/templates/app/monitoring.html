@@ -3,9 +3,8 @@
 {% block content %}
 
 <script type="text/javascript"> 
-    var pins = "{{ localizations|safe}}".replaceAll('\'','"');
-    console.log(pins);
- </script>
+    var pins = JSON.parse(`{{ localizations|safe}}`);
+</script>
 
     <div id='monitoring-map'>
         <form id="city-search">
