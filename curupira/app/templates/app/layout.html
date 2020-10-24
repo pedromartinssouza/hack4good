@@ -19,25 +19,18 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a href="/" class="navbar-brand">Application name</a>
+                <a href="/" class="navbar-brand">Curupira</a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a href="{% url 'home' %}">Home</a></li>
-                    <li><a href="{% url 'about' %}">About</a></li>
-                    <li><a href="{% url 'contact' %}">Contact</a></li>
+                    <li><a href="{% url 'monitoring' %}">Monitoring</a></li>
                 </ul>
-                {% include 'app/loginpartial.html' %}
             </div>
         </div>
     </div>
 
-    <div class="container body-content">
+    <div class="body-content">
 {% block content %}{% endblock %}
-        <hr/>
-        <footer>
-            <p>&copy; {{ year }} - My Django Application</p>
-        </footer>
     </div>
 
     <script src="{% static 'app/scripts/jquery-1.10.2.js' %}"></script>

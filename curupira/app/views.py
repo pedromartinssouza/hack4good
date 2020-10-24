@@ -46,10 +46,23 @@ def about(request):
         }
     )
 
+def monitoring(request):
+    """Renders the monitoring page."""
+    assert isinstance(request, HttpRequest)
+    return render(
+        request,
+        'app/monitoring.html',
+        {
+            'title':'Monitoring',
+            'year':datetime.now().year,
+        }
+    )
 def getWeather(request, lat, longit):
     if request.method == 'GET':
+
         return JsonResponse(utils.getWeatherData(lat, longit), safe = False)
 
 def monitorLocation(request, lat, longit):
     if request.method == 'POST':
         return JsonResponse(writeDB.assignMonitoring(lat, longit), safe = False)
+

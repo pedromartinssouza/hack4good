@@ -1,0 +1,18 @@
+{% extends "app/layout.html" %}
+
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'app/content/pages/monitoring/index.css' %}" />
+{% block content %}
+
+    <div id='monitoring-map'></div>
+
+{% endblock %}
+
+{% block scripts %}
+
+    {% load static %}
+    <script src="{% static 'app/scripts/lib/p5/p5.min.js' %}"></script>
+    <script src="{% static 'app/scripts/lib/mappa/mappa.js' %}"></script>
+    <script src="{% static 'app/scripts/src/monitoring/monitoring.js' %}"></script>
+
+{% endblock %}
