@@ -42,7 +42,6 @@ function setup() {
     var coordinates = centerCoordinate();
     options.lat = coordinates.lat;
     options.lng = coordinates.lng;
-    console.log({pins})
     monitoringMap = mappa.tileMap(options);
 
     monitoringMap.overlay(canvas);
@@ -85,17 +84,55 @@ function handlePinOnRangeWhenMousePressed(){
         const pinPos = monitoringMap.latLngToPixel(pin.lat, pin.longit);
         return (dist(mouseX, mouseY, pinPos.x, pinPos.y) < CLICK_THRESHOLD_DISTANCE);
     })
-    populatePane(pinOnRange);
-    toggleRightPane(true);
+    if (pinOnRange) {
+        populatePane(pinOnRange);
+        toggleRightPane(true);
+    }
 }
 
 function populatePane(pin) {
-    var title = document.getElementById("loc-details-title");
-    var lat = document.getElementById("loc-details-lat");
-    var lng = document.getElementById("loc-details-lng");
-    title.innerHTML = pin.name;
-    lat.innerHTML = pin.lat;
-    lng.innerHTML = pin.longit;
+    var container = document.getElementById("localization-details");
+    container.innerHTML = `<button type="button" class="btn btn-danger" onclick="toggleRightPane(false)">Close</button>`;
+    var titleH2 = document.createElement("h2");
+    titleH2.setAttribute("id", "loc-details-title")
+
+    var titleText = document.createTextNode(pin.name);
+    titleH2.appendChild(titleText);
+
+    container.appendChild(titleH2);
+
+    var detailsDataDiv = document.createElement("div")
+    detailsDataDiv.setAttribute("id", "loc-details-data");
+
+    detailsDataDiv.innerHTML = `Latitude: ${pin.lat}<br>Longitude: ${pin.longit}`
+    container.appendChild(detailsDataDiv);
+
+    var historicDataDiv = document.createElement("div")
+    historicDataDiv.setAttribute("id", "loc-historical-data");
+
+    for(var i = 0; i<pin.historical.length; i++) {
+        var historyEntry = document.createElement('div');
+
+        historyEntry.innerHTML = `<h5>Date: ${formatDate(pin.historical[i].date)}</h5>
+                                    Temperature: ${pin.historical[i].temperature.temp}°C <br>
+                                    Humidity: ${pin.historical[i].humidity} <br>
+                                    Wind speed: ${pin.historical[i].wind.speed} m/s<br><br>`
+        historicDataDiv.appendChild(historyEntry);
+    }
+
+    container.appendChild(historicDataDiv);
+
+}
+
+function formatDate(unix_timestamp) {
+    var date = new Date(unix_timestamp * 1000);
+
+    var month = (parseInt(date.getMonth() + 1));
+    var day = date.getDate();
+    var year = date.getFullYear();
+    
+    return month + "-" + day  + "-" + year;
+
 }
 
 function toggleRightPane(show) {
