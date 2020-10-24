@@ -25,7 +25,7 @@ SECRET_KEY = 'a07550ba-d2b1-4d20-9b40-9e207a54aa70'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['curupira.eba-peas8pes.us-west-2.elasticbeanstalk.com','127.0.0.1','curupira.us-west-2.elasticbeanstalk.com']
 
 # Application references
 # https://docs.djangoproject.com/en/2.1/ref/settings/#std:setting-INSTALLED_APPS

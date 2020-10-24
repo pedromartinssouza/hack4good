@@ -5,7 +5,15 @@ from datetime import datetime, timedelta, timezone
 def assignMonitoring(pLat, pLongit, pName):
 
     localizationQuerySet = Localization.objects.filter(lat = pLat, longit = pLongit)
-    localizationQuerySet.update(monitoring = True, name = pName)
+
+    if(localizationQuerySet.exists()):
+        localizationQuerySet.update(monitoring = True, name = pName)
+    else:
+        createdLocalizationQuerySet = Localization(lat = pLat,
+                                                   longit = pLongit,
+                                                   name = pName,
+                                                   monitoring = True)
+        createdLocalizationQuerySet.save()
 
     for days in range(5):
         historicalData = utils.getHistoricalData(pLat, pLongit, days)
