@@ -8,8 +8,9 @@ from django.http import HttpRequest, JsonResponse
 from .utils import utils
 from .utils import writeDB
 from .utils import readDB
+from .forms import AddMonitredCityForm
 
-
+import json
 def home(request):
     """Renders the home page."""
     assert isinstance(request, HttpRequest)
@@ -60,14 +61,43 @@ def monitoring(request):
             'localizations': readDB.readMonitoring()
         }
     )
+
+def cities(request):
+    form = AddMonitredCityForm()
+    if request.method == 'GET':
+        """Renders the cities page."""
+        assert isinstance(request, HttpRequest)
+        return render(
+            request,
+            'app/cities.html',
+            {
+                'title':'Cities',
+                'year':datetime.now().year,
+                'form': form
+            }
+        )
+
+def saveCity(request):
+    form = AddMonitredCityForm()
+    if request.method == 'POST':
+        writeDB.assignMonitoring(float(request.POST['pLat']), float(request.POST['pLng']), request.POST['pName'])
+        return render(
+            request,
+            'app/cities.html',
+            {
+                'title':'Cities',
+                'year':datetime.now().year,
+                'form': form
+            }
+        )
 def getWeather(request, lat, longit, tempUnit):
     if request.method == 'GET':
 
         return JsonResponse(utils.getWeatherData(lat, longit, tempUnit), safe = False)
 
-def monitorLocation(request, lat, longit, tempUnit):
+def monitorLocation(request, lat, longit, name):
     if request.method == 'POST':
-        return JsonResponse(writeDB.assignMonitoring(lat, longit, tempUnit), safe = False)
+        return JsonResponse(writeDB.assignMonitoring(lat, longit, name), safe = False)
 
 def getLocalizations(request):
     if request.method == 'GET':
