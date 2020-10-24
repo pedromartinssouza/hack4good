@@ -4,7 +4,8 @@ Definition of views.
 
 from datetime import datetime
 from django.shortcuts import render
-from django.http import HttpRequest
+from django.http import HttpRequest, JsonResponse
+from .utils import utils
 
 def home(request):
     """Renders the home page."""
@@ -44,6 +45,7 @@ def about(request):
         }
     )
 
+<<<<<<< HEAD
 def monitoring(request):
     """Renders the monitoring page."""
     assert isinstance(request, HttpRequest)
@@ -55,3 +57,8 @@ def monitoring(request):
             'year':datetime.now().year,
         }
     )
+=======
+def getWeather(request, lat, longit):
+    if request.method == 'GET':
+        return utils.getWeatherData(lat, longit)
+>>>>>>> 834b923d628ef8dca238fd1ea24ab0160b3337ed
