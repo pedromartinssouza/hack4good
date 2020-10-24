@@ -14,7 +14,7 @@ class Localization(models.Model):
 
 
 class WeatherData(models.Model):
-    umidity = models.FloatField()
+    humidity = models.FloatField()
     temperature = models.FloatField()
     temperatureMetric = models.CharField(max_length = 1)
     atmosphericPressure = models.FloatField()
@@ -28,11 +28,5 @@ class Event(models.Model):
     endDate = models.DateField()
 
 class WeatherPerEvent(models.Model):
-    eventId = models.ForeignKey(
-        'Event',
-        on_delete = models.CASCADE
-    )
-    weatherId = models.ForeignKey(
-        'WeatherData',
-        on_delete = models.CASCADE
-    )
+    eventId = models.IntegerField()
+    weatherId = models.IntegerField()
