@@ -2,6 +2,7 @@ from app.models import Localization, WeatherData, WeatherPerEvent
 from . import utils
 from datetime import datetime, timedelta, timezone
 import random
+import json
 
 def readMonitoring():
 
@@ -14,4 +15,4 @@ def readMonitoring():
         result[i]['longit'] = s['longit']/10000
         result[i]['flag'] = random.choice(['positive', 'careful', 'alert'])
 
-    return result
+    return json.dumps(result)
