@@ -50,11 +50,11 @@ var pins = [
 let icons;
 
 function setup() {
-    canvas = createCanvas(windowWidth, windowHeight).parent('monitoring-map');
-
 
     var windowHeight = window.innerHeight - NAVBAR_HEIGHT;
     var windowWidth = window.innerWidth - SCROLLBAR_WIDTH;
+    canvas = createCanvas(windowWidth, windowHeight).parent('monitoring-map');
+
 
     var positive = loadImage('./../static/app/assets/icons/positive.png');
     var careful = loadImage('./../static/app/assets/icons/Alert.png');
