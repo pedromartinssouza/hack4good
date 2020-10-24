@@ -33,5 +33,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     
     path('getWeather/<negint:lat>/<negint:longit>/<str:tempUnit>', views.getWeather),
-    path('monitorLocation/<negint:lat>/<negint:longit>/<str:tempUnit>', views.monitorLocation)
+    path('monitorLocation/<negint:lat>/<negint:longit>/<str:tempUnit>', views.monitorLocation),
+    path('getLocalizations/', views.getLocalizations)
 ]

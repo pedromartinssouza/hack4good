@@ -7,6 +7,8 @@ from django.shortcuts import render
 from django.http import HttpRequest, JsonResponse
 from .utils import utils
 from .utils import writeDB
+from .utils import readDB
+
 
 def home(request):
     """Renders the home page."""
@@ -55,6 +57,7 @@ def monitoring(request):
         {
             'title':'Monitoring',
             'year':datetime.now().year,
+            'localizations': readDB.readMonitoring()
         }
     )
 def getWeather(request, lat, longit, tempUnit):
@@ -66,3 +69,6 @@ def monitorLocation(request, lat, longit, tempUnit):
     if request.method == 'POST':
         return JsonResponse(writeDB.assignMonitoring(lat, longit, tempUnit), safe = False)
 
+def getLocalizations(request):
+    if request.method == 'GET':
+        return JsonResponse(readDB.readMonitoring(), safe = False)

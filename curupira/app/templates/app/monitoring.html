@@ -2,6 +2,11 @@
 
 {% block content %}
 
+<script type="text/javascript"> 
+    var pins = "{{ localizations|safe}}".replaceAll('\'','"');
+    console.log(pins);
+ </script>
+
     <div id='monitoring-map'>
         <form id="city-search">
             <div class="input-group">

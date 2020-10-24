@@ -28,3 +28,4 @@ def getHistoricalData(pLat, pLongit, days):
     forecastHistory = mgr.one_call_history(lat=lat, lon=longit, dt=date)
 
     return (forecastHistory.current)
+

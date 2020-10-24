@@ -20,32 +20,34 @@ let monitoringMap;
 let canvas;
 let meteorites;
 
-var pins = [
-    {
-        lat: -29.9189,
-        lng: -51.1781,
-        color: 'positive',
-        name: 'Canoas'
-    },
-    {
-        lat: -30.0884,
-        lng: -51.0238,
-        color: 'careful',
-        name: 'Viamão'
-    },
-    {
-        lat: -30.0277,
-        lng: -51.2287,
-        color: 'alert',
-        name: 'Porto Alegre'
-    },
-    {
-        lat: -29.7848,
-        lng: -55.7757,
-        color: 'positive',
-        name: 'Alegrete'
-    }
-]
+// var pins = [
+//     {
+//         lat: -29.9189,
+//         lng: -51.1781,
+//         color: 'positive',
+//         name: 'Canoas'
+//     },
+//     {
+//         lat: -30.0884,
+//         lng: -51.0238,
+//         color: 'careful',
+//         name: 'Viamão'
+//     },
+//     {
+//         lat: -30.0277,
+//         lng: -51.2287,
+//         color: 'alert',
+//         name: 'Porto Alegre'
+//     },
+//     {
+//         lat: -29.7848,
+//         lng: -55.7757,
+//         color: 'positive',
+//         name: 'Alegrete'
+//     }
+// ]
+
+//var pins = ;
 
 let icons;
 
