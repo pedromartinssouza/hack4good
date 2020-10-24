@@ -112,7 +112,17 @@ function handlePinOnRangeWhenMousePressed(){
         const pinPos = monitoringMap.latLngToPixel(pin.lat, pin.lng);
         return (dist(mouseX, mouseY, pinPos.x, pinPos.y) < CLICK_THRESHOLD_DISTANCE);
     })
+    populatePane(pinOnRange);
     toggleRightPane(true);
+}
+
+function populatePane(pin) {
+    var title = document.getElementById("loc-details-title");
+    var lat = document.getElementById("loc-details-lat");
+    var lng = document.getElementById("loc-details-lng");
+    title.innerHTML = pin.name;
+    lat.innerHTML = pin.lat;
+    lng.innerHTML = pin.lng;
 }
 
 function toggleRightPane(show) {
