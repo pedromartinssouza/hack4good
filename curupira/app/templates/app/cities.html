@@ -7,7 +7,7 @@
         <section id="citiesForm">
             <form action="../saveCity/" method="post" class="form-horizontal">
                 {% csrf_token %}
-                <h4>Add city to be monitored</h4>
+                <h4>Where curupira shall go next?</h4>
                 <hr />
 
                 {{ form }}
@@ -22,6 +22,7 @@
                 {% endif %}
             </form>
         </section>
+        <img src="../../static/app/assets/curupira-correndo.gif" alt="">
     </div>
     <div class="col-md-4">
         <section id="socialLoginForm"></section>
