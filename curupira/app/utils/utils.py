@@ -27,7 +27,7 @@ def getHistoricalData(pLat, pLongit, days):
 
     historicalData = list()
 
-    for x in range(5):
+    for x in range(4):
         date = int((datetime.now() - timedelta(days=x+1)).replace(tzinfo=timezone.utc).timestamp())
         history = mgr.one_call_history(lat=lat, lon=longit, dt=date)
         historicalData.append({

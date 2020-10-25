@@ -124,6 +124,26 @@ function populatePane(pin) {
 
 }
 
+function openCloseAddCity() {
+
+    var rightPane = document.getElementById("localization-details");
+    var isHidden = rightPane.classList.contains("hidden");
+    if(isHidden) {
+        toggleRightPane(true);
+        populatePaneWithAddCity();
+    } 
+    else {
+        toggleRightPane(false);
+    }
+
+}
+
+function populatePaneWithAddCity() {
+
+    var container = $("#localization-details").load("cities");;
+
+}
+
 function formatDate(unix_timestamp) {
     var date = new Date(unix_timestamp * 1000);
 

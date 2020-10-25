@@ -4,7 +4,7 @@ Definition of views.
 
 from datetime import datetime
 from django.shortcuts import render
-from django.http import HttpRequest, JsonResponse
+from django.http import HttpRequest, JsonResponse, HttpResponseRedirect
 from .utils import utils
 from .utils import writeDB
 from .utils import readDB
@@ -81,15 +81,16 @@ def saveCity(request):
     form = AddMonitredCityForm()
     if request.method == 'POST':
         writeDB.assignMonitoring(float(request.POST['pLat']), float(request.POST['pLng']), request.POST['pName'])
-        return render(
-            request,
-            'app/cities.html',
-            {
-                'title':'Cities',
-                'year':datetime.now().year,
-                'form': form
-            }
-        )
+        return HttpResponseRedirect("/")
+        # return render(
+        #     request,
+        #     'app/cities.html',
+        #     {
+        #         'title': 'Cities',
+        #         'year': datetime.now().year,
+        #         'form': form
+        #     }
+        # )
 def getWeather(request, lat, longit, tempUnit):
     if request.method == 'GET':
 

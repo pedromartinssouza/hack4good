@@ -13,7 +13,7 @@ register_converter(converters.NegativeIntConverter, 'negint')
 
 
 urlpatterns = [
-    path('', views.home, name='home'),
+    path('', views.monitoring, name='monitoring'),
     path('contact/', views.contact, name='contact'),
     path('about/', views.about, name='about'),
     path('monitoring/', views.monitoring, name='monitoring'),

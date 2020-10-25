@@ -12,22 +12,21 @@
 </head>
 
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="navbar-header">
+    <div class="navbar navbar-inverse navbar-fixed-top"  style="background-color: #8bbb8b;">
+        <div class="navbar-header" >
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a href="/" class="navbar-brand">
+            <a href="/" class="navbar-brand" style="color:white;">
                 <img src="../../static/app/assets/icons/curupira.png" width="30" height="30" alt="" loading="lazy">
                 Curupira
             </a>
         </div>
-        <div class="navbar-collapse collapse">
+        <div class="navbar-collapse collapse" style="position: absolute; right: 0" onclick="openCloseAddCity()">
             <ul class="nav navbar-nav">
-                <li><a href="{% url 'monitoring' %}">Monitoring</a></li>
-                <li><a href="{% url 'cities' %}">Cities</a></li>
+                <li><a style="cursor: pointer; color: white;">Add city</a></li>
             </ul>
         </div>
     </div>
