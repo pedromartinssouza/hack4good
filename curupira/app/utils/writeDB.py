@@ -4,8 +4,8 @@ from datetime import datetime, timedelta, timezone
 
 def assignMonitoring(pLat, pLongit, pName):
 
-    parsedLat = pLat * 1000
-    parsedLongit = pLongit * 1000
+    parsedLat = pLat * 10000
+    parsedLongit = pLongit * 10000
 
 
     localizationQuerySet = Localization.objects.filter(lat = parsedLat, longit = parsedLongit)
