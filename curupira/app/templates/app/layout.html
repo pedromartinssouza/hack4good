@@ -1,4 +1,12 @@
 <!DOCTYPE html>
+<style>
+a:hover {
+    color: #1e460c !important;
+}
+.clickableText {
+    color: white !important;
+}
+</style>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -11,27 +19,27 @@
     <script src="{% static 'app/scripts/modernizr-2.6.2.js' %}"></script>
 </head>
 
-<body>
+<body onresize="resizeMappa()">
     <div class="navbar navbar-inverse navbar-fixed-top"  style="background-color: #8bbb8b;">
-        <div class="navbar-header" >
+        <div class="navbar-header" style="color:white;" >
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a href="/" class="navbar-brand" style="color:white;">
+            <a href="/" class="clickableText navbar-brand">
                 <img src="../../static/app/assets/icons/curupira.png" width="30" height="30" alt="" loading="lazy">
                 Curupira
             </a>
         </div>
-        <div class="navbar-collapse collapse" style="position: absolute; right: 0" onclick="openCloseAddCity()">
+        <div class="navbar-collapse collapse clickable" style="position: absolute; right: 0" onclick="openCloseAddCity()">
             <ul class="nav navbar-nav">
-                <li><a style="cursor: pointer; color: white;">Add city</a></li>
+                <li><a class="clickableText" style="cursor: pointer;">Add city</a></li>
             </ul>
         </div>
     </div>
 
-    <div class="body-content">
+    <div class="body-content" style="color: #1e460c;">
 {% block content %}{% endblock %}
     </div>
 

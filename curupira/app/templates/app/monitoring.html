@@ -2,12 +2,19 @@
 
 {% block content %}
 
+<style>
+    h2, h5
+    {
+        color: #1e460c;
+    }
+</style>
+
 <script type="text/javascript"> 
     var pins = JSON.parse(`{{ localizations|safe}}`);
 </script>
 
     <div id='monitoring-map'>
-        <form id="city-search">
+        <!-- <form id="city-search">
             <div class="input-group">
                 <input type="text" class="form-control" placeholder="Search">
                 <div class="input-group-btn">
@@ -16,7 +23,7 @@
                     </button>
                 </div>
             </div>
-        </form>
+        </form> -->
         <div id="localization-details" class="hidden">
         </div>
     </div>

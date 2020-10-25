@@ -270,7 +270,15 @@ var TileMap = function () {
     value: function geoJSON() {
       return (0, _parseGeoJSON2.default)(arguments.length <= 0 ? undefined : arguments[0], arguments.length <= 1 ? undefined : arguments[1]);
     }
-  }]);
+  },
+  {
+    key: 'resize',
+    value: function resize(canvas) {
+      this.mappaDiv.style.width = canvas.width + 'px';
+      this.mappaDiv.style.height = canvas.height + 'px';
+    }
+  }
+]);
 
   return TileMap;
 }();

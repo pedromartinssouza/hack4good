@@ -1,7 +1,7 @@
 {% extends "app/layout.html" %}
 
 {% block content %}
-
+<button type="button" class="btn btn-danger" onclick="toggleRightPane(false)">Close</button>
 <div class="row">
     <div class="col-md-8">
         <section id="citiesForm">
@@ -12,9 +12,9 @@
 
                 {{ form }}
                 <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input type="hidden" name="next" value="/" />
-                        <input type="submit" value="Add" class="btn btn-default" />
+                    <div class="col-md-offset-2 col-md-10" style="margin-left: 0 !important;">
+                        <input type="hidden" name="next" value="/" /><br>
+                        <input type="submit" value="Add" class="btn btn-default"/>
                     </div>
                 </div>
                 {% if form.errors %}

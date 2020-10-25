@@ -24,6 +24,8 @@ let icons;
 
 function setup() {
 
+    // var windowHeight = window.innerHeight - NAVBAR_HEIGHT;
+    // var windowWidth = window.innerWidth - SCROLLBAR_WIDTH;
     var windowHeight = window.innerHeight - NAVBAR_HEIGHT;
     var windowWidth = window.innerWidth - SCROLLBAR_WIDTH;
     canvas = createCanvas(windowWidth, windowHeight).parent('monitoring-map');
@@ -42,7 +44,9 @@ function setup() {
     var coordinates = centerCoordinate();
     options.lat = coordinates.lat;
     options.lng = coordinates.lng;
-    monitoringMap = mappa.tileMap(options);
+    monitoringMap = mappa.tileMap(options,function () {
+        monitoringMap.map.invalidateSize();
+    });
 
     monitoringMap.overlay(canvas);
     monitoringMap.onChange(drawMeteorites);
@@ -113,11 +117,23 @@ function populatePane(pin) {
     for(var i = 0; i<pin.historical.length; i++) {
         var historyEntry = document.createElement('div');
 
+        if(i == 0) {
+            var currentData = document.createElement('div');
+            currentData.innerHTML = "<h2>Today's data: </h2>";
+            historicDataDiv.appendChild(currentData);
+        }
+
         historyEntry.innerHTML = `<h5>Date: ${formatDate(pin.historical[i].date)}</h5>
                                     Temperature: ${pin.historical[i].temperature.temp}°C <br>
                                     Humidity: ${pin.historical[i].humidity} <br>
                                     Wind speed: ${pin.historical[i].wind.speed} m/s<br><br>`
         historicDataDiv.appendChild(historyEntry);
+
+        if(i == 0) {
+            currentData = document.createElement('div');
+            currentData.innerHTML = "<h2>Historical data: </h2>";
+            historicDataDiv.appendChild(currentData);
+        }
     }
 
     container.appendChild(historicDataDiv);
@@ -126,6 +142,7 @@ function populatePane(pin) {
 
 function openCloseAddCity() {
 
+    toggleRightPane(false);
     var rightPane = document.getElementById("localization-details");
     var isHidden = rightPane.classList.contains("hidden");
     if(isHidden) {
@@ -164,3 +181,10 @@ function toggleRightPane(show) {
         rightPane.classList.add("hidden");
     }
 } 
+
+function resizeMappa() {
+    var windowHeight = window.innerHeight - NAVBAR_HEIGHT;
+    var windowWidth = window.innerWidth - SCROLLBAR_WIDTH;
+    resizeCanvas(windowWidth, windowHeight);
+    monitoringMap.resize(canvas);
+}

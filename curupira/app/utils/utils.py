@@ -27,6 +27,16 @@ def getHistoricalData(pLat, pLongit, days):
 
     historicalData = list()
 
+    currentData = getCurrentCompleteWeatherData(pLat, pLongit)
+
+    historicalData.append({
+        'dewpoint': currentData['dewpoint'],
+        'temperature': currentData['temperature'],
+        'humidity': currentData['humidity'],
+        'wind': currentData['wind'],
+        'date': currentData['date']
+    })
+    
     for x in range(4):
         date = int((datetime.now() - timedelta(days=x+1)).replace(tzinfo=timezone.utc).timestamp())
         history = mgr.one_call_history(lat=lat, lon=longit, dt=date)
